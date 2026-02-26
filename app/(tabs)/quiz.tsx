@@ -34,17 +34,15 @@ export default function QuizScreen() {
   const [feedback, setFeedback] = useState<{status: 'correct' | 'wrong' | null, msg: string}>({status: null, msg: ''});
   const [isFinished, setIsFinished] = useState(false);
   
-  // Зберігаємо історію відповідей для аналізу помилок
   const [wrongAnswers, setWrongAnswers] = useState<{question: string, correctAnswer: string}[]>([]);
 
-  // Зберігаємо прогрес тільки при завершенні з хорошим результатом
   useEffect(() => {
     if (isFinished && selectedType) {
       const percentage = (score / quizData.length) * 100;
       
       if (percentage >= 90) {
         const saveResults = async () => {
-          const earnedXP = 100 + (score * 10); // Більше XP за квіз
+          const earnedXP = 100 + (score * 10); 
           await progressService.addQuizResult(selectedType, earnedXP);
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         };
@@ -75,7 +73,6 @@ export default function QuizScreen() {
     } else {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
       setFeedback({status: 'wrong', msg: '❌ Ой...'});
-      // Додаємо в список помилок
       setWrongAnswers(prev => [...prev, {
         question: currentQ.question,
         correctAnswer: currentQ.answer
@@ -99,7 +96,6 @@ export default function QuizScreen() {
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
         
-        {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => selectedType ? setSelectedType(null) : router.back()}>
             <Ionicons name={selectedType ? "arrow-back" : "close"} size={28} color="#94A3B8" />
