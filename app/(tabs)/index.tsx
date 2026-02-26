@@ -44,7 +44,7 @@ export default function HomeScreen() {
         
         <View style={styles.header}>
           <Text style={styles.welcome}>Welcome back,</Text>
-          <Text style={styles.logo}>AuraEng<Text style={{color: '#38BDF8'}}>&</Text></Text>
+          <Text style={styles.logo}>AuraEng</Text>
         </View>
 
         <View style={styles.grid}>

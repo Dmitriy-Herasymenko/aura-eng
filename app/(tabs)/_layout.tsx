@@ -31,7 +31,7 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Приховані екрани без зайвих опцій */}
+
       <Tabs.Screen name="vocabulary" options={{ href: null }} />
       <Tabs.Screen name="quiz" options={{ href: null }} />
       <Tabs.Screen name="quest" options={{ href: null }} />
